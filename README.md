@@ -10,10 +10,14 @@ To create a microservice API to help us understand and track how a particular pe
 
 **POST /calculate**
 ### Approach: Topological Sorting
-**Steps**
- 1. Building the Graph: Construct a graph where each node represents an airport, and directed edges represent flights from the source to the destination airport.
- 2. Identifying the Start Node: The starting airport will be the one that has no incoming flights.
- 3. Topological Sorting: Perform a topological sort to get the flight path in the correct order.
+- **Graph Construction**: Build a graph using adjacency lists and track in-degrees of nodes.
+- **Queue Initialization**: Initialize a queue with nodes having zero in-degree.
+- **Processing**: Process nodes from the queue, appending them to the sorted result and reducing in-degrees of their neighbors.
+- **Cycle Detection**: If the number of sorted nodes doesn't match the number of graph nodes, a cycle or disconnected segment is detected.
+
+#### Error Handling
+- **Invalid Input**: Return `400 Bad Request` for invalid input.
+- **Cycle or Disconnected Segments**: Throw an error if a cycle is detected or if there are disconnected segments.
 
 ### Request Body
 ```json
@@ -36,4 +40,4 @@ To create a microservice API to help us understand and track how a particular pe
 
 
 ## Conclusion
-By using a topological sort approach with error handling and cycle detection, you can ensure that the solution is robust and can handle complex scenarios effectively. This approach provides clear error messages and maintains the integrity of the flight path calculation.
+By using a topological sort approach with error handling and cycle detection, you can ensure that the solution is robust and can handle complex scenarios effectively. Also, This approach provides clear error messages and maintains the integrity of the flight path calculation.
