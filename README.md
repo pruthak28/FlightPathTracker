@@ -7,6 +7,9 @@ There are over 100,000 flights a day, with millions of people and cargo being tr
 ## Goal
 To create a microservice API to help us understand and track how a particular person’s flight path may be queried. The API should accept a request that includes a list of flights defined by a source and destination airport code. These flights may not be listed in order and must be sorted to find the total flight paths starting and ending at airports.
 
+## Assumption
+The initial source and final destination will always be different airports
+
 ## API Endpoint
 
 **POST /calculate**
