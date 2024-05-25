@@ -1,3 +1,4 @@
+
 # Flight Path Tracker
 
 ## Story
@@ -33,6 +34,41 @@ To create a microservice API to help us understand and track how a particular pe
 }
 ```
 
+### Errors
+
+-   `400 Bad Request`: Invalid input format.
+-   `500 Internal Server Error`: An error occurred during processing.
+
+### Examples
+
+#### Valid Request
+```json
+{
+  "flights": [["SFO", "EWR"]]
+}
+```
+
+#### Response:
+```json
+{
+  "path": ["SFO", "EWR"]
+}
+```
+***
+#### Invalid Request (Cycle Detection)
+```json
+{
+  "flights": [["SFO", "ATL"], ["ATL", "EWR"], ["EWR", "SFO"]]
+}
+```
+
+#### Response:
+```json
+{
+  "error": "Cycle detected or disconnected segments"
+}
+```
+
 ### How To Run
 -   `npm install`
 -   `node server.js`
@@ -40,4 +76,4 @@ To create a microservice API to help us understand and track how a particular pe
 
 
 ## Conclusion
-By using a topological sort approach with error handling and cycle detection, you can ensure that the solution is robust and can handle complex scenarios effectively. Also, This approach provides clear error messages and maintains the integrity of the flight path calculation.
+By using a topological sort approach with error handling and cycle detection, you can ensure that the solution is robust and can handle complex scenarios effectively. This approach provides clear error messages and maintains the integrity of the flight path calculation.
